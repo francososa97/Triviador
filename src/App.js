@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './Paginas/Home.js';
+import Puntaje from './Paginas/Puntaje.js';
+import Trivia from './Paginas/Trivia.js';
+import Genero from './Paginas/Genero.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+
+  const [generoSeleccionado,SetGeneroSeleccionado] = useState("");
+  return(
+    <>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <Router>
+            <Switch>
+            <Route exact path="/" 
+                       render={ () => (
+                          <Home/>
+                       ) } 
+                  />
+            <Route exact path="/genero" 
+              render={ () => (
+                <Genero
+                SetGeneroSeleccionado={SetGeneroSeleccionado}
+                />
+              ) } 
+            />
+            <Route exact path="/puntaje" 
+              render={ () => (
+                <Puntaje/>
+              ) } 
+            />
+            <Route exact path="/trivia" 
+              render={ () => (
+                <Trivia
+                  generoSeleccionado={generoSeleccionado}
+                />
+              ) } 
+            />
+            </Switch>
+        </Router>
+      </Container>
+    </>
+
   );
+
 }
 
 export default App;
