@@ -1,36 +1,17 @@
-import React,{useState} from 'react';
-import Generos from '../Helpers/Generos';
+import React,{useState,useContext} from 'react';
 import Container from '@material-ui/core/Container';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import {TriviadorContext} from '../Context/TriviadorContext';
 
 const Genero = (props) => {
-    const {SetGeneroSeleccionado} = props;
 
-    const ObtenerGenerosRandom = () =>{
-        let generosRandom=["","","","",""];
-        for (let index = 0; index < generosRandom.length; index++) {
+    const { SetGeneroElegido, generosAleatorios}  = useContext(TriviadorContext);
 
-            let indiceGeneroRandom = Math.abs(Math.floor(Math.random() * (0 - (Generos.length - 1))) + 0);
-            let contieneGenero = generosRandom.includes(Generos[indiceGeneroRandom]);
-            while (contieneGenero) {
-                indiceGeneroRandom = Math.abs(Math.floor(Math.random() * (0 - (Generos.length - 1))) + 0);
-                contieneGenero = generosRandom.includes(Generos[indiceGeneroRandom]);
-            }
-            if(Generos[indiceGeneroRandom] === undefined)
-            {
-                console.log(Generos[indiceGeneroRandom]);
-                debugger;
-            }
-            generosRandom[index]= Generos[indiceGeneroRandom]; 
-        }
-        console.log(generosRandom);
-        return generosRandom;
-    }
-    const [generos,SetGeneros]= useState(ObtenerGenerosRandom());
+    const [generos,SetGeneros]= useState(generosAleatorios);
 
     return(
         <Container maxWidth="sm">
@@ -45,14 +26,14 @@ const Genero = (props) => {
                     <>
                         <Grid item xs={12}>
                             <Paper>
-                                <Button variant="contained" color="primary" disableElevation onClick={() => SetGeneroSeleccionado(genero)}>
+                                <Button variant="contained" color="primary" disableElevation onClick={() => SetGeneroElegido(genero)}>
                                     <NavLink 
                                         to='/trivia'
                                         className="nav-link"
                                         activeClassName="active"
-                                        onClick={() => SetGeneroSeleccionado(genero)}
+                                        onClick={() => SetGeneroElegido(genero)}
                                     >
-                                        {genero}
+                                        {genero.replace(/_|#|-|@|<>/g, " ")}
                                     </NavLink>
                                 </Button>
                             </Paper>

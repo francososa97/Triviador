@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { NavLink } from 'react-router-dom';
+import {TriviadorContext} from '../Context/TriviadorContext';
 
 const Home = () =>{
+    
     return(
         <Container maxWidth="sm">
             <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
