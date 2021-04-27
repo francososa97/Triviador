@@ -10,6 +10,10 @@ const TriviadorProvider = (props) => {
     const [trivias,SetTrivias]= useState({});
     const [generoElegido,SetGeneroElegido] = useState("");
     const [generosAleatorios,SetGenerosAleatorios] = useState([]);
+    const [triviaPorGenero,SetTriviaPorGenero] = useState([]);
+    const [usuario,SetUsuario] = useState("");
+    const [puntaje, SetPuntaje] = useState(0);
+
 
     const  ObtenerGenerosRandom = (generos) =>{
         let generosRandom=["","","","",""];
@@ -22,32 +26,30 @@ const TriviadorProvider = (props) => {
                     indiceGeneroRandom = Math.abs(Math.floor(Math.random() * (0 - (generos.length - 1))) + 0);
                     contieneGenero = generosRandom.includes(generos[indiceGeneroRandom]);
                     if(!contieneGenero)
+                    {
                         generosRandom[index]= generos[indiceGeneroRandom]; 
+                        break;
+                    }
                 }
             }
             else{
-                generosRandom[index]= generos[indiceGeneroRandom]; 
+                generosRandom[index]= generos[indiceGeneroRandom];
+                if(generosRandom[4].length > 0){
+                    break; 
+                }
             }
-           
-
         }
-        /*
-        for (let index = 0; index < generosRandom.length; index++) {
-
-            let indiceGeneroRandom = Math.abs(Math.floor(Math.random() * (0 - (generos.length - 1))) + 0);
-            let contieneGenero = generosRandom.includes(generos[indiceGeneroRandom]);
-            while (contieneGenero) {
-                indiceGeneroRandom = Math.abs(Math.floor(Math.random() * (0 - (generos.length - 1))) + 0);
-                contieneGenero = generosRandom.includes(generos[indiceGeneroRandom]);
-            }
-            console.log(`se va a guardar ${generos[indiceGeneroRandom]} en ${generosRandom[index]}`)
-            generosRandom[index]= generos[indiceGeneroRandom]; 
-
-        }*/
-        generosRandom.forEach(genero => {
-            genero.replace(/_|#|-|@|<>/g, " ");
-        })
         return generosRandom;
+    }
+
+    const BuscarGeneroSeleccionado = (genero) =>{
+        SetGeneroElegido(genero);
+        const propiedadesTrivia = Object.keys(trivias);
+        propiedadesTrivia.forEach(trivia => {
+            let esGeneroSeleccionado = trivia.includes(genero);
+            if(esGeneroSeleccionado)
+                SetTriviaPorGenero(trivias[trivia]);
+        });
     }
 
     useEffect(() => {
@@ -85,8 +87,15 @@ const TriviadorProvider = (props) => {
                     generosDefinidos,
                     generosAleatorios,
                     generoElegido,
+                    triviaPorGenero,
+                    usuario,
+                    puntaje,
+                    SetPuntaje,
+                    SetUsuario,
+                    SetTriviaPorGenero,
                     SetGeneroElegido,
-                    SetTrivias
+                    SetTrivias,
+                    BuscarGeneroSeleccionado
                 }
             }
         >

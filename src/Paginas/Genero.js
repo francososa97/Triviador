@@ -9,7 +9,7 @@ import {TriviadorContext} from '../Context/TriviadorContext';
 
 const Genero = (props) => {
 
-    const { SetGeneroElegido, generosAleatorios}  = useContext(TriviadorContext);
+    const { SetGeneroElegido,BuscarGeneroSeleccionado, generosAleatorios}  = useContext(TriviadorContext);
 
     const [generos,SetGeneros]= useState(generosAleatorios);
 
@@ -26,12 +26,12 @@ const Genero = (props) => {
                     <>
                         <Grid item xs={12}>
                             <Paper>
-                                <Button variant="contained" color="primary" disableElevation onClick={() => SetGeneroElegido(genero)}>
+                                <Button variant="contained" color="primary" disableElevation onClick={() => BuscarGeneroSeleccionado(genero)}>
                                     <NavLink 
                                         to='/trivia'
                                         className="nav-link"
                                         activeClassName="active"
-                                        onClick={() => SetGeneroElegido(genero)}
+                                        onClick={() => BuscarGeneroSeleccionado(genero)}
                                     >
                                         {genero.replace(/_|#|-|@|<>/g, " ")}
                                     </NavLink>
