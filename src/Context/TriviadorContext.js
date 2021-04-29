@@ -1,6 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { db } from '../Firebase/FirebaseConfig';
-
 
 export const TriviadorContext = createContext();
 
@@ -11,73 +9,47 @@ const TriviadorProvider = (props) => {
     const [generoElegido,SetGeneroElegido] = useState("");
     const [generosAleatorios,SetGenerosAleatorios] = useState([]);
     const [triviaPorGenero,SetTriviaPorGenero] = useState([]);
+    const [triviasPorGeneroAleatorias,SetTriviasPorGeneroAleatorios]= useState([]);
     const [usuario,SetUsuario] = useState("");
     const [puntaje, SetPuntaje] = useState(0);
 
+    const DesordenarPreguntas = (preguntas) =>{
 
-    const  ObtenerGenerosRandom = (generos) =>{
-        let generosRandom=["","","","",""];
-        for (let index = 0; index < generosRandom.length; index++) {
-            let indiceGeneroRandom = Math.abs(Math.floor(Math.random() * (0 - (generos.length - 1))) + 0);
-            let contieneGenero = generosRandom.includes(generos[indiceGeneroRandom]);
-            if(contieneGenero)
-            {
-                while (contieneGenero) {
-                    indiceGeneroRandom = Math.abs(Math.floor(Math.random() * (0 - (generos.length - 1))) + 0);
-                    contieneGenero = generosRandom.includes(generos[indiceGeneroRandom]);
-                    if(!contieneGenero)
-                    {
-                        generosRandom[index]= generos[indiceGeneroRandom]; 
-                        break;
-                    }
-                }
-            }
-            else{
-                generosRandom[index]= generos[indiceGeneroRandom];
-                if(generosRandom[4].length > 0){
-                    break; 
-                }
-            }
+        let idPreguntas=[];
+        for (let index = 1; index <= preguntas.length; index++) {
+            idPreguntas[index]=index;
         }
-        return generosRandom;
+        idPreguntas = idPreguntas.sort(function() {return Math.random() - 0.5});
+        idPreguntas= idPreguntas.slice(0,11);
+      
+        let preguntasAleatorias =[];
+        for (let index = 1; index < idPreguntas.length; index++) {
+            if( preguntas[idPreguntas[index]] === undefined){
+                let idPreguntaReserva = DesordenarPreguntas(preguntas);
+                return idPreguntaReserva;
+            }
+            preguntasAleatorias[index] = preguntas[idPreguntas[index]];
+        }
+      return preguntasAleatorias;
     }
 
+    const ObtenerPreguntasAleatorias = (preguntas) =>{
+        let preguntasAleatorias= DesordenarPreguntas(preguntas);
+        SetTriviasPorGeneroAleatorios(preguntasAleatorias);
+    }
+    
     const BuscarGeneroSeleccionado = (genero) =>{
         SetGeneroElegido(genero);
         const propiedadesTrivia = Object.keys(trivias);
         propiedadesTrivia.forEach(trivia => {
             let esGeneroSeleccionado = trivia.includes(genero);
             if(esGeneroSeleccionado)
+            {
                 SetTriviaPorGenero(trivias[trivia]);
+                ObtenerPreguntasAleatorias(trivias[trivia]);
+            }
         });
     }
-
-    useEffect(() => {
-        const ObtenerTriviador = () =>{
-            const triviaReferencia = db.collection(`trivias`);
-            const generoReferencia = db.collection(`genero`);
-
-            triviaReferencia.onSnapshot((snap) => {
-                const dataBaseOperation = [];
-                snap.forEach((snapChild) => {
-                    dataBaseOperation.push(snapChild.data());
-                });
-                SetTrivias(dataBaseOperation[0]);
-            });
-            
-            generoReferencia.onSnapshot((snap) => {
-                const dataBaseOperation = [];
-                snap.forEach((snapChild) => {
-                    dataBaseOperation.push(snapChild.data());
-                });
-                SetGenerosDefinidos(dataBaseOperation[0].Generos);
-                const generosRandom = ObtenerGenerosRandom(dataBaseOperation[0].Generos);
-                SetGenerosAleatorios(generosRandom);
-            });
-
-        }
-        ObtenerTriviador();
-    });
 
     return (
         <TriviadorContext.Provider
@@ -90,11 +62,13 @@ const TriviadorProvider = (props) => {
                     triviaPorGenero,
                     usuario,
                     puntaje,
+                    triviasPorGeneroAleatorias,
                     SetPuntaje,
                     SetUsuario,
                     SetTriviaPorGenero,
                     SetGeneroElegido,
                     SetTrivias,
+                    SetGenerosAleatorios,
                     BuscarGeneroSeleccionado
                 }
             }

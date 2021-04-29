@@ -9,9 +9,7 @@ import {TriviadorContext} from '../Context/TriviadorContext';
 
 const Genero = (props) => {
 
-    const { SetGeneroElegido,BuscarGeneroSeleccionado, generosAleatorios}  = useContext(TriviadorContext);
-
-    const [generos,SetGeneros]= useState(generosAleatorios);
+    const { SetGeneroElegido, generosAleatorios,SetTriviaPorGenero,trivias,BuscarGeneroSeleccionado}  = useContext(TriviadorContext);
 
     return(
         <Container maxWidth="sm">
@@ -21,7 +19,7 @@ const Genero = (props) => {
             </Typography>
             <Grid container spacing={3}>
        
-            {generos.map(genero=>{
+            {generosAleatorios.map(genero=>{
                 return(
                     <>
                         <Grid item xs={12}>

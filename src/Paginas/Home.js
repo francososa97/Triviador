@@ -1,4 +1,4 @@
-import React,{useContext,useState} from 'react';
+import React,{useContext,useState,useEffect} from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { NavLink } from 'react-router-dom';
@@ -7,10 +7,18 @@ import {TriviadorContext} from '../Context/TriviadorContext';
 import Button from '@material-ui/core/Button';
 
 
-const Home = () =>{
+const Home = (props) =>{
 
-    const { usuario,SetUsuario} = useContext(TriviadorContext);
+    const {generosAleatorios,trivias} = props;
+
+    const { usuario,SetUsuario,SetGenerosAleatorios,SetTrivias} = useContext(TriviadorContext);
+    
     const [podesContinuar,SetPodesContinuar] = useState(false);
+
+    useEffect(() =>{
+        SetGenerosAleatorios(generosAleatorios);
+        SetTrivias(trivias);
+    });
     
     const SetearNombre = (nombreUsuario) =>{
         SetUsuario(nombreUsuario);

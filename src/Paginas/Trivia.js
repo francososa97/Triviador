@@ -4,56 +4,45 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import {TriviadorContext} from '../Context/TriviadorContext';
 import { NavLink } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const Trivia = () => {
 
-    const { generoElegido,triviaPorGenero,usuario,SetPuntaje }  = useContext(TriviadorContext);
+    const { generoElegido,usuario,SetPuntaje,triviasPorGeneroAleatorias}  = useContext(TriviadorContext);
+
+
+    const SiguientePregunta=()=>{
+            if(preguntaActual ===1 ){
+                const {pregunta,opciones}= triviasPorGeneroAleatorias[2];
+                return {"pregunta":pregunta,"opciones":opciones};
+            }
+            else{
+                const {pregunta,opciones}= triviasPorGeneroAleatorias[preguntaActual];
+                return {"pregunta":pregunta,"opciones":opciones}; 
+            }
+    }
+
     const [preguntaActual,SetPreguntaActual] = useState(1);
     const [finalizarTrivia,SetFinalizarTrivia] = useState(false);
-    const [triviasFiltradas,SetTriviasFiltradas] = useState([]);
-    const [triviaActual,SetTriviaActual] = useState({});
+    const [triviasAleatorias,SetTriviasAleatorias] = useState([]);
+    const [triviaActual,SetTriviaActual] = useState(triviasPorGeneroAleatorias[preguntaActual]);
 
-    const ObtenerTriviasFiltradas = () =>{
 
-        let preguntasTriviaElegida=[];
-            for (let index = 0; index < 10; index++) {
-                let indiceTriviaAleatoria = Math.abs(Math.floor(Math.random() * (0 - (15))) + 0);
-                let contienePregunta = preguntasTriviaElegida.includes(triviaPorGenero[indiceTriviaAleatoria]);
-                if(contienePregunta)
-                {
-                    while (contienePregunta) {
-                        indiceTriviaAleatoria = Math.abs(Math.floor(Math.random() * (0 - (15))) + 0);
-                        contienePregunta = preguntasTriviaElegida.includes(triviaPorGenero[indiceTriviaAleatoria]);
-                        if(!contienePregunta)
-                        {
-                            debugger;
-                            preguntasTriviaElegida[index]= triviaPorGenero[indiceTriviaAleatoria]; 
-                            break;
-                        }
-                    }
-                }
-                else
-                    preguntasTriviaElegida[index]= triviaPorGenero[indiceTriviaAleatoria]; 
     
-            }
-            SetTriviasFiltradas(preguntasTriviaElegida);
-            return preguntasTriviaElegida;
-    }
-
     const EvaluarRespuesta= (opcionCorrecta) =>{
         if(opcionCorrecta)
-            SetPuntaje((state) => state + 1);
-        SetPreguntaActual((state) => state + 1);
-        if(preguntaActual === 10)
-            SetFinalizarTrivia(true)
+            SetPuntaje((state) => state + 100);
+
+        if(preguntaActual < 10 ){
+            SetPreguntaActual((state) => state + 1);
+            console.log(`tu pregunta actual es la numero ${preguntaActual}`);
+            SetTriviaActual(SiguientePregunta(preguntaActual));
+        }
+        else{
+            SetFinalizarTrivia(true);
+        }
+       
     }
-
-    useEffect(() => {
-        const preguntasTrivia = ObtenerTriviasFiltradas();
-        debugger;
-        SetTriviaActual(preguntasTrivia[preguntaActual]);
-
-    });
 
     return(
         <Container maxWidth="sm">
@@ -62,47 +51,30 @@ const Trivia = () => {
             <Typography className="titulo" variant="h1" gutterBottom>
                 {generoElegido.replace(/_|#|-|@|<>/g, " ")}
             </Typography>
-            <Paper>
-                <h3>{triviaActual.pregunta}</h3>
-                <div>
-                    <ul>
-                        {
-                        triviaActual.opciones.map(opcion=>{
-                            console.log(triviaActual);
-                            return(
-                                <li onClick={() => EvaluarRespuesta(opcion.esVerdadera)}>{opcion.opcion}</li>
-                            );
-                        })}
-                    </ul>
-                </div>
-            </Paper>
-            {finalizarTrivia
-            ?   <NavLink to='/puntaje' className="nav-link" activeClassName="active"> <p className="white-text">Finalizar</p></NavLink>
-            : null }
+            {!finalizarTrivia ?
+                        <Paper>
+                            <h3>{triviaActual.pregunta}</h3>
+                            <ol>
+                                {triviaActual.opciones.map(opcion=>{
+                                    return(
+                                        <li onClick={() => EvaluarRespuesta(opcion.esVerdadera)}>
+                                            <Button variant="contained" color="primary" disableElevation>
+                                            {opcion.opcion}
+                                            </Button>
+                                        </li>
+                                    );
+                                })}
+                            </ol>
+                            <span className="quiz_screen-counter">{preguntaActual}/{10}</span>
+                        </Paper>
+            :
+                <Paper>
+                    <NavLink to='/puntaje' className="nav-link" activeClassName="active"> <p className="white-text">Finalizar</p></NavLink>
+                </Paper>
+            }
         </Typography>
         <span className="quiz_screen-counter">{preguntaActual}/{10}</span>
         </Container>
     )
 }
 export default Trivia;
-
-
-/*
- {triviaActual === undefined ? null 
-                :  
-                    <>
-                        <h3>{triviaActual.pregunta}</h3>
-                        <div>
-                            <ul>
-                                {
-                                triviaActual.opciones.map(opcion=>{
-                                    console.log(triviaActual);
-                                    return(
-                                        <li onClick={() => EvaluarRespuesta(opcion.esVerdadera)}>{opcion.opcion}</li>
-                                    );
-                                })}
-                            </ul>
-                        </div>
-                    </>
-                }
-*/

@@ -505,7 +505,6 @@
                 ]
     
             },
-    
             {
                 "pregunta":" ¿Cuál es el equipo de la NBA con más títulos?",
                 "opciones":[
@@ -517,7 +516,6 @@
                 ]
     
             },
-    
             {
                 "pregunta":" ¿Quién fue la primera alpinista en llegar a la cima del Everest?",
                 "opciones":[
@@ -548,7 +546,6 @@
                 ]
     
             },
-    
             {
                 "pregunta":" ¿Cuántos rounds hay en un combate de boxeo olímpico?",
                 "opciones":[
@@ -569,7 +566,6 @@
                     {"opcion":"España", "esVerdadera":false}]
     
             },
-    
             {
                 "pregunta":" ¿Cómo se llamaba el ciclista italiano apodado “il campionissimo”?",
                 "opciones":[{"opcion":"Fausto Coppi","esVerdadera":true},
@@ -599,6 +595,7 @@
     
             }
         ],
+        
         "Películas_o_series":[
             {
                 "pregunta":"¿En qué año se fundó Netflix?",
@@ -1076,7 +1073,7 @@
         ],
         "Ciencia":[
             {
-                "prgunta":" ¿En qué mes el Sol está más cerca de la Tierra?",
+                "pregunta":" ¿En qué mes el Sol está más cerca de la Tierra?",
                 "opciones":[
                     {"opcion":"Diciembre","esVerdadera":true},
                     {"opcion":"Marzo","esVerdadera":false},
@@ -1086,7 +1083,7 @@
                 ]
             },
             {
-                "prgunta":"¿En qué lado del cuerpo está el hígado?",
+                "pregunta":"¿En qué lado del cuerpo está el hígado?",
                 "opciones":[
                     {"opcion":"En el derecho","esVerdadera":true},
                     {"opcion":"En el izquierdo","esVerdadera":false},
@@ -1095,7 +1092,7 @@
                 ]
             },
             {
-                "prgunta":"¿Qué número viene después del 14 en los decimales del Pi?",
+                "pregunta":"¿Qué número viene después del 14 en los decimales del Pi?",
                 "opciones":[
                     {"opcion":"El 1","esVerdadera":true},
                     {"opcion":"El 9","esVerdadera":false},
@@ -1105,7 +1102,7 @@
                 ]
             },
             {
-                "prgunta":"¿Cuántos elementos tiene la tabla periódica?",
+                "pregunta":"¿Cuántos elementos tiene la tabla periódica?",
                 "opciones":[
                     {"opcion":"Tiene un total de 118","esVerdadera":true},
                     {"opcion":"Tiene un total de 120","esVerdadera":false},
@@ -1115,7 +1112,7 @@
                 ]
             },
             {
-                "prgunta":"¿Qué gas de la atmósfera nos protege de la radiación ultravioleta?",
+                "pregunta":"¿Qué gas de la atmósfera nos protege de la radiación ultravioleta?",
                 "opciones":[
                     {"opcion":"El ozono","esVerdadera":true},
                     {"opcion":"nitrogeno", "esVerdadera":false},
@@ -1125,7 +1122,7 @@
                 ]
             },
             {
-                "prgunta":" ¿Cuáles son las bases nitrogenadas del ADN?",
+                "pregunta":" ¿Cuáles son las bases nitrogenadas del ADN?",
                 "opciones":[
                     {"opcion":"Adenina, timina, guanina y citosina","esVerdadera":true},
                     {"opcion":"Helicasa, timina, guanina y citosina","esVerdadera":false},
@@ -1135,7 +1132,7 @@
                 ]
             },
             {
-                "prgunta":"¿Cuál es la velocidad de la luz?",
+                "pregunta":"¿Cuál es la velocidad de la luz?",
                 "opciones":[
                     {"opcion":"300.000 Km/s","esVerdadera":true},
                     {"opcion":"3.000 Km/s","esVerdadera":false},
@@ -1145,7 +1142,7 @@
                 ]
             },
             {
-                "prgunta":"De los cinco sentidos, ¿cuál es el que se desarrolla primero?",
+                "pregunta":"De los cinco sentidos, ¿cuál es el que se desarrolla primero?",
                 "opciones":[
                     {"opcion":"El olfato.","esVerdadera":true},
                     {"opcion":"El tacto","esVerdadera":false},
@@ -1155,7 +1152,7 @@
                 ]
             },
             {
-                "prgunta":" ¿Qué elemento está presente en absolutamente todas las moléculas orgánicas?",
+                "pregunta":" ¿Qué elemento está presente en absolutamente todas las moléculas orgánicas?",
                 "opciones":[
                     {"opcion":"El carbono.","esVerdadera":true},
                     {"opcion":"El oxigeno","esVerdadera":false},
@@ -1165,7 +1162,7 @@
                 ]
             },
             {
-                "prgunta":"¿Cómo se llaman las células con un núcleo diferenciado?",
+                "pregunta":"¿Cómo se llaman las células con un núcleo diferenciado?",
                 "opciones":[
                     {"opcion":"Eucariotas","esVerdadera":true},
                     {"opcion":"Procariotas","esVerdadera":false},
@@ -1174,7 +1171,7 @@
                 ]
             },
             {
-                "prgunta":"¿A partir de qué planta se elabora el tequila?",
+                "pregunta":"¿A partir de qué planta se elabora el tequila?",
                 "opciones":[
                     {"opcion":"El agave.","esVerdadera":true},
                     {"opcion":"El maguey","esVerdadera":false},
@@ -1184,7 +1181,7 @@
                 ]
             },
             {
-                "prgunta":"¿Cuál fue el biólogo que de manera independiente a Darwin elaboró una teoría de la evolución casi idéntica a la suya?",
+                "pregunta":"¿Cuál fue el biólogo que de manera independiente a Darwin elaboró una teoría de la evolución casi idéntica a la suya?",
                 "opciones":[
                     {"opcion":"Alfred Russell Wallace.","esVerdadera":true},
                     {"opcion":"Gregor Mendel","esVerdadera":false},
@@ -1193,7 +1190,7 @@
                 ]
             },
             {
-                "prgunta":" ¿Qué ciencia estudia la sangre?",
+                "pregunta":" ¿Qué ciencia estudia la sangre?",
                 "opciones":[
                     {"opcion":"La hematología","esVerdadera":true},
                     {"opcion":"La Urología","esVerdadera":false},
@@ -1203,7 +1200,7 @@
                 ]
             },
             {
-                "prgunta":"¿Cuál es el único mes que puede tener menos de 4 fases lunares?",
+                "pregunta":"¿Cuál es el único mes que puede tener menos de 4 fases lunares?",
                 "opciones":[
                     {"opcion":"Febrero","esVerdadera":true},
                     {"opcion":"Marzo","esVerdadera":false},
@@ -1213,7 +1210,7 @@
                 ]
             },
             {
-                "prgunta":"¿Qué significan las siglas ADN?",
+                "pregunta":"¿Qué significan las siglas ADN?",
                 "opciones":[
                     {"opcion":"Ácido desoxirribonucleico","esVerdadera":true},
                     {"opcion":"Ácido perclorico","esVerdadera":false},
@@ -1222,7 +1219,7 @@
                 ]
             },
             {
-                "prgunta":"¿Cuál es el elemento más abundante de la Tierra?",
+                "pregunta":"¿Cuál es el elemento más abundante de la Tierra?",
                 "opciones":[
                     {"opcion":"El hidrógeno","esVerdadera":true},
                     {"opcion":"El oxigeno","esVerdadera":false},
@@ -1231,7 +1228,7 @@
                 ]
             },
             {
-                "prgunta":"¿Cuál es el animal más venenoso del mundo?",
+                "pregunta":"¿Cuál es el animal más venenoso del mundo?",
                 "opciones":[
                     {"opcion":"La medusa avispa de mar","esVerdadera":true},
                     {"opcion":"Escorpión","esVerdadera":false},
@@ -1241,7 +1238,7 @@
                 ]
             },
             {
-                "prgunta":"¿Qué edad tiene la Tierra en millones de años ?",
+                "pregunta":"¿Qué edad tiene la Tierra en millones de años ?",
                 "opciones":[
                     {"opcion":"4.543","esVerdadera":true},
                     {"opcion":"6.975 ","esVerdadera":false},
