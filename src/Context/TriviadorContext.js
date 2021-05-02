@@ -12,6 +12,8 @@ const TriviadorProvider = (props) => {
     const [triviasPorGeneroAleatorias,SetTriviasPorGeneroAleatorios]= useState([]);
     const [usuario,SetUsuario] = useState("");
     const [puntaje, SetPuntaje] = useState(0);
+    const [tiempoInicial, SetTiempoInicial] = useState('');
+    const [duracionTrivia,SetDuracionTrivia] = useState('');
 
     const DesordenarPreguntas = (preguntas) =>{
 
@@ -39,6 +41,10 @@ const TriviadorProvider = (props) => {
     }
     
     const BuscarGeneroSeleccionado = (genero) =>{
+
+        let teimpoActual= new Date();
+        let tiempoInicio = `${teimpoActual.getHours()}:${teimpoActual.getUTCMinutes()}:${teimpoActual.getSeconds()}`;
+        SetTiempoInicial(teimpoActual);
         SetGeneroElegido(genero);
         const propiedadesTrivia = Object.keys(trivias);
         propiedadesTrivia.forEach(trivia => {
@@ -63,6 +69,9 @@ const TriviadorProvider = (props) => {
                     usuario,
                     puntaje,
                     triviasPorGeneroAleatorias,
+                    tiempoInicial,
+                    duracionTrivia,
+                    SetDuracionTrivia,
                     SetPuntaje,
                     SetUsuario,
                     SetTriviaPorGenero,

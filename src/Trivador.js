@@ -15,6 +15,7 @@ const Trivador = () => {
 
   const [trivias,SetTrivias]= useState({});
   const [generosAleatorios,SetGenerosAleatorios] = useState([]);
+  const [rellamado,SetRellamado] = useState(true);
 
   const  ObtenerGenerosRandom = (generos) =>{
       let generosRandom=["","","","",""];
@@ -48,7 +49,6 @@ const Trivador = () => {
       const ObtenerTriviador = () =>{
           const triviaReferencia = db.collection(`trivias`);
           const generoReferencia = db.collection(`genero`);
-
           triviaReferencia.onSnapshot((snap) => {
               const dataBaseOperation = [];
               snap.forEach((snapChild) => {
@@ -56,6 +56,7 @@ const Trivador = () => {
               });
               let {trivias}=dataBaseOperation[0];
               SetTrivias(trivias);
+              SetRellamado(false);
           });
           
           generoReferencia.onSnapshot((snap) => {
@@ -65,11 +66,12 @@ const Trivador = () => {
               });
               const generosRandom = ObtenerGenerosRandom(dataBaseOperation[0].Generos);
               SetGenerosAleatorios(generosRandom);
+              SetRellamado(false);
           });
 
       }
       ObtenerTriviador();
-  });
+  },[rellamado]);
 
   return(
     <>
@@ -98,15 +100,3 @@ const Trivador = () => {
 }
 
 export default Trivador;
-
-
-/*
-                <Route exact path="/productos" 
-                       render={ () => (
-                          <Productos 
-                            productos={productos}
-                            guardarRecargarProductos={guardarRecargarProductos}
-                          />
-                       ) } 
-                  />
-*/

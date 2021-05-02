@@ -11,7 +11,8 @@ const Trivia = () => {
     const { generoElegido,usuario,SetPuntaje,triviasPorGeneroAleatorias}  = useContext(TriviadorContext);
 
 
-    const SiguientePregunta=()=>{
+    const SiguientePregunta = () => {
+
             if(preguntaActual ===1 ){
                 const {pregunta,opciones}= triviasPorGeneroAleatorias[2];
                 return {"pregunta":pregunta,"opciones":opciones};
