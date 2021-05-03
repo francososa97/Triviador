@@ -10,7 +10,6 @@ import TriviadorContext from './Context/TriviadorContext';
 import TablaPuntajes from './Paginas/TablaPuntajes.js';
 import { db } from './Firebase/FirebaseConfig';
 
-
 const Trivador = () => {
 
   const [trivias,SetTrivias]= useState({});
@@ -77,7 +76,6 @@ const Trivador = () => {
     <>
       <TriviadorContext>
         <CssBaseline />
-        <Container maxWidth="sm">
           <Router>
               <Switch>
                 <Route exact path="/"   
@@ -93,7 +91,6 @@ const Trivador = () => {
                 <Route exact path="/tablapuntajes" component={TablaPuntajes} />
               </Switch>
           </Router>
-        </Container>
       </TriviadorContext>
     </>
   );
