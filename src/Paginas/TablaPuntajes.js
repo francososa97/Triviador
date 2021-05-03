@@ -29,7 +29,6 @@ const VistaPuntajes = () => {
 
     const classes = useStyles();
 
-
     const ObtenerMEjoresPuntajes = (puntajesUsuarios) => {
         puntajesUsuarios.sort((a, b) => b.puntaje - a.puntaje);
         let mejoresPuntajes = [...puntajesUsuarios];
@@ -37,6 +36,7 @@ const VistaPuntajes = () => {
         mejoresPuntajes = mejoresPuntajes.slice(0,9);
         SetMejoresPuntajes(mejoresPuntajes);
     }
+
     const PostPuntajes = () =>{
         let dateActualy= new Date();
         let dateConsultation = `${dateActualy.getDate()}/${dateActualy.getMonth()+1}/${dateActualy.getFullYear()} ${dateActualy.getHours()}:${dateActualy.getUTCMinutes()}`;
@@ -61,10 +61,10 @@ const VistaPuntajes = () => {
 
     }
 
-
     useEffect(() => {
 
         PostPuntajes();
+
         const puntajeReferencia = db.collection(`puntajes`);
         puntajeReferencia.onSnapshot((snap) => {
             let dataBaseOperation = [];

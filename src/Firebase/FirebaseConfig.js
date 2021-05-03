@@ -1,7 +1,6 @@
 import firebase from "firebase/app";
 import 'firebase/auth'
 import "firebase/firestore";
-import trivias from '../Helpers/PreguntasTrivia';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDh44Totr9SHhPBkG-uepbgdzNK5GiUVNw",

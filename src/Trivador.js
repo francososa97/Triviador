@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Paginas/Home.js';
 import Puntaje from './Paginas/Puntaje.js';
@@ -44,7 +43,6 @@ const Trivador = () => {
   }
 
   useEffect(() => {
-
       const ObtenerTriviador = () =>{
           const triviaReferencia = db.collection(`trivias`);
           const generoReferencia = db.collection(`genero`);
@@ -53,7 +51,7 @@ const Trivador = () => {
               snap.forEach((snapChild) => {
                   dataBaseOperation.push(snapChild.data());
               });
-              let {trivias}=dataBaseOperation[0];
+              let trivias = dataBaseOperation[0];
               SetTrivias(trivias);
               SetRellamado(false);
           });

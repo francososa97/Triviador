@@ -1,10 +1,9 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState} from 'react';
 
 export const TriviadorContext = createContext();
 
 const TriviadorProvider = (props) => {
 
-    const [generosDefinidos,SetGenerosDefinidos]= useState([]);
     const [trivias,SetTrivias]= useState({});
     const [generoElegido,SetGeneroElegido] = useState("");
     const [generosAleatorios,SetGenerosAleatorios] = useState([]);
@@ -41,9 +40,7 @@ const TriviadorProvider = (props) => {
     }
     
     const BuscarGeneroSeleccionado = (genero) =>{
-
         let teimpoActual= new Date();
-        let tiempoInicio = `${teimpoActual.getHours()}:${teimpoActual.getUTCMinutes()}:${teimpoActual.getSeconds()}`;
         SetTiempoInicial(teimpoActual);
         SetGeneroElegido(genero);
         const propiedadesTrivia = Object.keys(trivias);
@@ -62,7 +59,6 @@ const TriviadorProvider = (props) => {
             value={
                 {
                     trivias,
-                    generosDefinidos,
                     generosAleatorios,
                     generoElegido,
                     triviaPorGenero,

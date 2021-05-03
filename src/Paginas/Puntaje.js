@@ -13,15 +13,15 @@ const Puntaje = () =>{
     const classes = useStyles();
 
     const GetDuracionTiempo = (FechaInicio) => {
-        
+
         let FechaFin= new Date();
         let duracion,minutos,segundos ="";
         if(FechaInicio.getSeconds() > FechaFin.getSeconds()){
-            minutos = (FechaFin.getMinutes() - FechaInicio.getMinutes()) -1 ;
-            segundos = 60 + (FechaFin.getSeconds() - FechaInicio.getSeconds());
+            minutos = Math.abs((FechaFin.getMinutes() - FechaInicio.getMinutes()) -1 );
+            segundos = Math.abs(60 + (FechaFin.getSeconds() - FechaInicio.getSeconds()));
             duracion = `${minutos}:${segundos}`;
         }
-        duracion = `${FechaFin.getMinutes() - FechaInicio.getMinutes()}:${FechaFin.getSeconds() - FechaInicio.getSeconds()}`;
+        duracion = `${Math.abs(FechaFin.getMinutes() - FechaInicio.getMinutes())}:${Math.abs(FechaFin.getSeconds() - FechaInicio.getSeconds())}`;
         SetDuracionTrivia(duracion);
     }
 

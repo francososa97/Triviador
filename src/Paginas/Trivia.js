@@ -1,5 +1,4 @@
-import React,{useContext,useState,useEffect} from 'react';
-import Container from '@material-ui/core/Container';
+import React,{useContext,useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import {TriviadorContext} from '../Context/TriviadorContext';
@@ -10,6 +9,9 @@ import useStyles from '../Estilos/useStyles.js';
 const Trivia = () => {
 
     const { generoElegido,usuario,SetPuntaje,triviasPorGeneroAleatorias}  = useContext(TriviadorContext);
+    const [preguntaActual,SetPreguntaActual] = useState(1);
+    const [finalizarTrivia,SetFinalizarTrivia] = useState(false);
+    const [triviaActual,SetTriviaActual] = useState(triviasPorGeneroAleatorias[preguntaActual]);
     const classes = useStyles();
 
     const SiguientePregunta = () => {
@@ -24,10 +26,7 @@ const Trivia = () => {
             }
     }
 
-    const [preguntaActual,SetPreguntaActual] = useState(1);
-    const [finalizarTrivia,SetFinalizarTrivia] = useState(false);
-    const [triviasAleatorias,SetTriviasAleatorias] = useState([]);
-    const [triviaActual,SetTriviaActual] = useState(triviasPorGeneroAleatorias[preguntaActual]);
+
 
     const EvaluarRespuesta= (opcionCorrecta) =>{
 
@@ -44,7 +43,7 @@ const Trivia = () => {
     }
 
     return(
-        <>
+        <div className="home-paper">
             <main className={classes.layout}>
                 <Paper className={classes.paper}>
                     <Typography className="titulo-home" component="h1" variant="h4" align="center">
@@ -95,7 +94,7 @@ const Trivia = () => {
                     {preguntaActual}/{10}
                 </Typography>
             </main>
-        </>
+        </div>
     )
 }
 export default Trivia;

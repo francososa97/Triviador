@@ -1508,7 +1508,7 @@
                 ]
             },
             {
-                "opciones":"¿Cómo se llama el protagonista de Halo?",
+                "pregunta":"¿Cómo se llama el protagonista de Halo?",
                 "opciones":[
                     {"opcion":"Comandante Total","esVerdadera":false},
                     {"opcion":"John","esVerdadera":false},

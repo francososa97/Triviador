@@ -31,7 +31,7 @@ const Home = (props) =>{
     const classes = useStyles();
 
     return(
-      <>
+        <div className="home-paper">
           <main className={classes.layout}>
             <Paper className={classes.paper}>
               <Typography className="titulo-home" component="h1" variant="h4" align="center">
@@ -70,7 +70,7 @@ const Home = (props) =>{
                 </Button>
             </NavLink>
           </main>
-      </>
+        </div>
     )
 }
 export default Home;
