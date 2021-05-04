@@ -14,20 +14,6 @@ const Trivia = () => {
     const [triviaActual,SetTriviaActual] = useState(triviasPorGeneroAleatorias[preguntaActual]);
     const classes = useStyles();
 
-    const SiguientePregunta = () => {
-
-            if(preguntaActual === 1 ){
-                const {pregunta,opciones}= triviasPorGeneroAleatorias[2];
-                return {"pregunta":pregunta,"opciones":opciones};
-            }
-            else{
-                const {pregunta,opciones}= triviasPorGeneroAleatorias[preguntaActual];
-                return {"pregunta":pregunta,"opciones":opciones}; 
-            }
-    }
-
-
-
     const EvaluarRespuesta= (opcionCorrecta) =>{
 
         if(opcionCorrecta)
@@ -35,7 +21,8 @@ const Trivia = () => {
 
         if(preguntaActual < 10 ){
             SetPreguntaActual((state) => state + 1);
-            SetTriviaActual(SiguientePregunta(preguntaActual));
+            const {pregunta,opciones}= triviasPorGeneroAleatorias[preguntaActual];
+            SetTriviaActual({pregunta,opciones});
         }
         else{
             SetFinalizarTrivia(true);
