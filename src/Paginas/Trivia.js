@@ -20,8 +20,9 @@ const Trivia = () => {
             SetPuntaje((state) => state + 10);
 
         if(preguntaActual < 10 ){
-            SetPreguntaActual((state) => state + 1);
-            const {pregunta,opciones}= triviasPorGeneroAleatorias[preguntaActual];
+
+            SetPreguntaActual(preguntaActual + 1);
+            const {pregunta,opciones}= triviasPorGeneroAleatorias[preguntaActual + 1];
             SetTriviaActual({pregunta,opciones});
         }
         else{

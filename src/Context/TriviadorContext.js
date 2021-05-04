@@ -26,8 +26,8 @@ const TriviadorProvider = (props) => {
         let preguntasAleatorias =[];
         for (let index = 1; index < idPreguntas.length; index++) {
             if( preguntas[idPreguntas[index]] === undefined){
-                let idPreguntaReserva = DesordenarPreguntas(preguntas);
-                return idPreguntaReserva;
+                idPreguntas[index]= Math.floor(Math.random() * ((10+1)-0)+0);
+                preguntasAleatorias[index] = preguntas[idPreguntas[index]];
             }
             preguntasAleatorias[index] = preguntas[idPreguntas[index]];
         }
